@@ -146,5 +146,5 @@ yarn.lock
 **/schema.graphql
 
 # Environment variables
-.env
-.env.*
+**/.env
+**/.env.*
