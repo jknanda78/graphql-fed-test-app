@@ -144,3 +144,7 @@ yarn.lock
 
 # Generated files
 **/schema.graphql
+
+# Environment variables
+.env
+.env.*
