@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "user-subgraph/src", "articles-subgraph/src"],
+  "ext": "ts",
+  "ignore": ["src/**/*.spec.ts", "user-subgraph/src/**/*.spec.ts", "articles-subgraph/src/**/*.spec.ts"],
+  "exec": "concurrently --kill-others --names 'subgraph-user, subgraph-articles' --prefix-colors 'blue,magenta' --prefix '[:name]' 'npm run start:subgraph-user' 'npm run start:subgraph-articles'"
+}

@@ -1,0 +1,56 @@
+{
+  "name": "graphql-fed-test-app",
+  "version": "1.0.0",
+  "description": "gateway",
+  "keywords": [
+    "apollographql",
+    "gateway",
+    "federation"
+  ],
+  "homepage": "https://github.com/jknanda78/graphql-fed-test-app#readme",
+  "bugs": {
+    "url": "https://github.com/jknanda78/graphql-fed-test-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jknanda78/graphql-fed-test-app.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "clean-install": "rm -rf node_modules && rm package-lock.json && npm install",
+    "create-db": "ts-node ./src/tools/create-db-insert-data.ts",
+    "dev": "nodemon",
+    "merge:subgraph-user": "ts-node ./tools/merge-schemas.ts --subgraph user-subgraph",
+    "merge:subgraph-articles": "ts-node ./tools/merge-schemas.ts --subgraph articles-subgraph",
+    "publish:subgraph-user": "npm run merge:subgraph-user && rover subgraph publish WWW-Articles@current --schema ./user-subgraph/src/schema.graphql --name user-subgraph --routing-url http://localhost:4001",
+    "publish:subgraph-articles": "npm run merge:subgraph-articles && rover subgraph publish WWW-Articles@current --schema ./articles-subgraph/src/schema.graphql --name articles-subgraph --routing-url http://localhost:4002",
+    "predev": "npm run create-db",
+    "start:subgraph-user": "PORT=4001 ts-node ./user-subgraph/src/server.ts",
+    "start:subgraph-articles": "PORT=4002 ts-node ./articles-subgraph/src/server.ts",
+    "test": "npm test"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^2.5.5",
+    "@apollo/server": "^4.9.3",
+    "@apollo/subgraph": "^2.11.2",
+    "better-sqlite3": "^12.2.0",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "knex": "^3.1.0"
+  },
+  "devDependencies": {
+    "@graphql-tools/load-files": "^7.0.1",
+    "@graphql-tools/merge": "^9.1.1",
+    "@types/node": "^24.3.0",
+    "@types/yargs": "^17.0.33",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "2.0.0",
+    "typescript": "^5.8.2",
+    "yargs": "^18.0.0"
+  }
+}

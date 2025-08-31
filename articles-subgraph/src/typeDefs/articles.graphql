@@ -1,0 +1,19 @@
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@external"])
+
+type Article @key(fields: "id") {
+  id: ID!
+  title: String!
+}
+
+input ArticleInput {
+  title: String!
+}
+
+type Query {
+  article(id: ID!): Article
+}
+
+type Mutation {
+  createArticle(input: ArticleInput!): Article
+}
+
