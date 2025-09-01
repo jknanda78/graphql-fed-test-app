@@ -1,3 +1,5 @@
+import getUserById from "@user-data-access/getUserById";
+
 /**
  * Resolver for fetching a single article by its ID.
  *
@@ -13,7 +15,7 @@ const userResolver = async (
   context: any,
   info: any
 ): Promise<any> => {
-  return {};
+  return getUserById(args.id);
 };
 
 export default userResolver;

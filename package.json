@@ -21,15 +21,15 @@
   "scripts": {
     "build": "tsc",
     "clean-install": "rm -rf node_modules && rm package-lock.json && npm install",
-    "create-db": "ts-node ./src/tools/create-db-insert-data.ts",
-    "dev": "nodemon",
-    "merge:subgraph-user": "ts-node ./tools/merge-schemas.ts --subgraph user-subgraph",
-    "merge:subgraph-articles": "ts-node ./tools/merge-schemas.ts --subgraph articles-subgraph",
+    "create-db": "ts-node -r tsconfig-paths/register ./src/tools/create-db-insert-data.ts",
+    "start:gateway": "nodemon",
+    "merge:subgraph-user": "ts-node -r tsconfig-paths/register ./tools/merge-schemas.ts --subgraph user-subgraph",
+    "merge:subgraph-articles": "ts-node -r tsconfig-paths/register ./tools/merge-schemas.ts --subgraph articles-subgraph",
     "publish:subgraph-user": "npm run merge:subgraph-user && rover subgraph publish WWW-Articles@current --schema ./user-subgraph/src/schema.graphql --name user-subgraph --routing-url http://localhost:4001",
     "publish:subgraph-articles": "npm run merge:subgraph-articles && rover subgraph publish WWW-Articles@current --schema ./articles-subgraph/src/schema.graphql --name articles-subgraph --routing-url http://localhost:4002",
     "predev": "npm run create-db",
-    "start:subgraph-user": "PORT=4001 ts-node ./user-subgraph/src/server.ts",
-    "start:subgraph-articles": "PORT=4002 ts-node ./articles-subgraph/src/server.ts",
+    "start:subgraph-user": "nodemon --exec PORT=4001 ts-node -r tsconfig-paths/register ./user-subgraph/src/server.ts",
+    "start:subgraph-articles": "nodemon --exec PORT=4002 ts-node -r tsconfig-paths/register ./articles-subgraph/src/server.ts",
     "test": "npm test"
   },
   "dependencies": {
@@ -50,6 +50,7 @@
     "nodemon": "^3.1.9",
     "ts-node": "^10.4.0",
     "ts-node-dev": "2.0.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2",
     "yargs": "^18.0.0"
   }
