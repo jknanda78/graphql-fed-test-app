@@ -1,3 +1,5 @@
+import createUserByEmail from "@user-data-access/createUserByEmail";
+
 /**
  * Resolver for fetching a single article by its ID.
  *
@@ -13,7 +15,7 @@ const createUserResolver = async (
     context: any,
     info: any
   ): Promise<any> => {
-    return {};
+    return createUserByEmail(args.input);
   };
   
   export default createUserResolver;

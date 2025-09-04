@@ -28,18 +28,20 @@
     "publish:subgraph-user": "npm run merge:subgraph-user && rover subgraph publish WWW-Articles@current --schema ./user-subgraph/src/schema.graphql --name user-subgraph --routing-url http://localhost:4001",
     "publish:subgraph-articles": "npm run merge:subgraph-articles && rover subgraph publish WWW-Articles@current --schema ./articles-subgraph/src/schema.graphql --name articles-subgraph --routing-url http://localhost:4002",
     "predev": "npm run create-db",
-    "start:subgraph-user": "nodemon --exec PORT=4001 ts-node -r tsconfig-paths/register ./user-subgraph/src/server.ts",
-    "start:subgraph-articles": "nodemon --exec PORT=4002 ts-node -r tsconfig-paths/register ./articles-subgraph/src/server.ts",
+    "start:subgraph-user": "nodemon --delay 2.5 --exec PORT=4001 ts-node -r tsconfig-paths/register ./user-subgraph/src/server.ts",
+    "start:subgraph-articles": "nodemon --delay 2.5 --exec PORT=4002 ts-node -r tsconfig-paths/register ./articles-subgraph/src/server.ts",
     "test": "npm test"
   },
   "dependencies": {
     "@apollo/gateway": "^2.5.5",
     "@apollo/server": "^4.9.3",
     "@apollo/subgraph": "^2.11.2",
+    "@types/uuid": "^10.0.0",
     "better-sqlite3": "^12.2.0",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
-    "knex": "^3.1.0"
+    "knex": "^3.1.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@graphql-tools/load-files": "^7.0.1",

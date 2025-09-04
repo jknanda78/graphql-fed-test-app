@@ -16,6 +16,13 @@ type Query {
   user(id: ID!): User
 }
 
+type Message {
+  msg: String!
+  error: Boolean!
+  code: String!
+}
+
+
 type Mutation {
-  createUser(input: UserInput!): User
+  createUser(input: UserInput!): Message
 }
