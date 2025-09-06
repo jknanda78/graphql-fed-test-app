@@ -150,4 +150,4 @@ yarn.lock
 **/.env.*
 
 # Apollo router
-router/router
+**/router
