@@ -148,3 +148,6 @@ yarn.lock
 # Environment variables
 **/.env
 **/.env.*
+
+# Apollo router
+router/router

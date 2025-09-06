@@ -15,7 +15,7 @@ const getUsersTable = () => connection.table<{}>("user");
  */
 const createUserByEmail = async (userInput: {email: string, name: string}): Promise<Message> => {
   const user = await getUsersTable().where("email", userInput.email).first();
-  console.log({user});
+
   if (!user) {
     await getUsersTable().insert({
       userId: uuid(),

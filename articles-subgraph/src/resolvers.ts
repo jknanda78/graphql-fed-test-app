@@ -10,7 +10,9 @@ const resolvers: any = {
     article: articleResolver,
   },
   User: {
-    __resolveReference: (user: User) => getArticlesByUserId(user.id),
+    __resolveReference: (user: User) => {
+      return { articles: getArticlesByUserId(user.id) };
+    },
   },
   Mutation: {
     createArticle: createArticleResolver,
