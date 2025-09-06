@@ -10,7 +10,8 @@ input ArticleInput {
 }
 
 type Query {
-  article(id: ID!): Article
+  userArticles(userId: ID!): [Article]
+  articles: [Article]
 }
 
 type Mutation {
