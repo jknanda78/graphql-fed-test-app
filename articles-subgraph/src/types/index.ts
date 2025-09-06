@@ -10,7 +10,7 @@ export type Message = {
 };
 
 export type Article = {
-    articleId: string;
+    id: string;
     title: string;
 }
     

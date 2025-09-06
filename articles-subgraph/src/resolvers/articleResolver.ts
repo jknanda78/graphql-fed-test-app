@@ -1,3 +1,5 @@
+import getArticleById from "@articles-subgraph/data-access/getArticlesById";
+
 /**
  * Resolver for fetching a single article by its ID.
  *
@@ -13,7 +15,7 @@ const articleResolver = async (
     context: any,
     info: any
   ): Promise<any> => {
-    return {};
+    return getArticleById(args.id);
   };
   
   export default articleResolver;
