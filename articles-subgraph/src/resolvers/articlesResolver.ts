@@ -1,4 +1,4 @@
-import getArticlesById from "@articles-subgraph/data-access/getArticlesById";
+import getArticles from "@articles-subgraph/data-access/getArticles";
 
 /**
  * Resolver for fetching a single article by its ID.
@@ -9,14 +9,14 @@ import getArticlesById from "@articles-subgraph/data-access/getArticlesById";
  * @param {any} info - Information about the execution state of the query.
  * @returns {Promise<{}>} - The article data.
  */
-const articleResolver = async (
+const articlesResolver = async (
     parent: any,
     args: any,
     context: any,
     info: any
   ): Promise<any> => {
-    return getArticlesById(args.id);
+    return getArticles();
   };
   
-  export default articleResolver;
+  export default articlesResolver;
   

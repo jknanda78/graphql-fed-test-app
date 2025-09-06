@@ -1,14 +1,16 @@
-import articleResolver from "./resolvers/articleResolver";
-import createArticleResolver from "./resolvers/createArticleResolver";
+import articlesResolver from "@articles-subgraph/resolvers/articlesResolver";
+import createArticleResolver from "@articles-subgraph/resolvers/createArticleResolver";
+import articleResolver from "@articles-subgraph/resolvers/articleResolver";
+import getArticlesByUserId from "@articles-subgraph/data-access/getArticlesByUserId";
+import { User } from "@articles-subgraph/types";
 
 const resolvers: any = {
   Query: {
+    articles: articlesResolver,
     article: articleResolver,
   },
   User: {
-    __resolveReference: (user: any) => {
-      return {...user, articles: []}
-    },
+    __resolveReference: (user: User) => getArticlesByUserId(user.id),
   },
   Mutation: {
     createArticle: createArticleResolver,

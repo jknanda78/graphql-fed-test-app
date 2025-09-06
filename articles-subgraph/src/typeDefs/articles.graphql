@@ -10,7 +10,7 @@ input ArticleInput {
 }
 
 type Query {
-  userArticles(userId: ID!): [Article]
+  article(articleId: ID!): Article
   articles: [Article]
 }
 
