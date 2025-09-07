@@ -1,6 +1,4 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@external"])
-
-type Article @key(fields: "id") {
+type Article {
   id: ID!
   title: String!
 }
@@ -11,7 +9,7 @@ input ArticleInput {
 
 type Query {
   article(articleId: ID!): Article
-  articles: [Article]
+  articles: [Article]!
 }
 
 type Mutation {
