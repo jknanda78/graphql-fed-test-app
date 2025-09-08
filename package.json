@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc",
     "clean-install": "rm -rf node_modules && rm package-lock.json && npm install",
-    "create-db": "ts-node -r tsconfig-paths/register ./src/tools/create-db-insert-data.ts",
+    "create-db": "ts-node -r tsconfig-paths/register ./tools/create-db-insert-data.ts",
     "merge:subgraph-user": "ts-node -r tsconfig-paths/register ./tools/merge-schemas.ts --subgraph user-subgraph",
     "merge:subgraph-articles": "ts-node -r tsconfig-paths/register ./tools/merge-schemas.ts --subgraph articles-subgraph",
     "publish:subgraph-user": "npm run merge:subgraph-user && rover subgraph publish WWW-Articles@current --schema ./user-subgraph/src/schema.graphql --name user-subgraph --routing-url http://localhost:4001",

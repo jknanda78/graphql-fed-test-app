@@ -11,7 +11,7 @@ const resolvers: any = {
   },
   User: {
     __resolveReference: (user: User) => {
-      return { articles: getArticlesByUserId(user.id) };
+      return getArticlesByUserId(user);
     },
   },
   Mutation: {

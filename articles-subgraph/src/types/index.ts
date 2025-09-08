@@ -1,4 +1,12 @@
+export enum AccountType {
+    ADMIN,
+    USER,
+    GUEST,
+    AUTHOR
+}
+
 export type ArticleTable = {
+    userId: string;
     articleId: string;
     title: string;
 }
@@ -19,4 +27,10 @@ export type User = {
     email: string;
     name: string;
     createdAt: string;
+    accountType: AccountType;
+};
+
+export type UserWithArticles = {
+    articles: Article[];
+    accountType: AccountType;
 };

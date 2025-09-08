@@ -1,6 +1,14 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@external"])
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@external", "@shareable"])
+
+enum AccountType {
+  ADMIN
+  USER
+  GUEST
+  AUTHOR
+}
 
 extend type User @key(fields: "id") {
   id: ID! @external
   articles: [Article]!
+  accountType: AccountType! @shareable
 }
