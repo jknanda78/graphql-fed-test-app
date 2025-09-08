@@ -1,4 +1,4 @@
-import createUserByEmail from "@user-data-access/createUserByEmail";
+import createUserByEmail from "@user-subgraph/datasource/createUserByEmail";
 
 /**
  * Resolver for fetching a single article by its ID.

@@ -1,4 +1,4 @@
-import getUserById from "@user-data-access/getUserById";
+import getUserById from "@user-subgraph/datasource/getUserById";
 
 /**
  * Resolver for fetching a single article by its ID.

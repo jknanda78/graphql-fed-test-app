@@ -12,8 +12,8 @@
       "@tools/*": ["./tools/*"],
       "@articles-subgraph/*": ["./articles-subgraph/src/*"],
       "@user-subgraph/*": ["./user-subgraph/src/*"],
-      "@user-data-access/*": ["./user-subgraph/src/data-access/*"],
-      "@articles-data-access/*": ["./articles-subgraph/src/data-access/*"],
+      "@user-data-access/*": ["./user-subgraph/src/datasource/*"],
+      "@articles-data-access/*": ["./articles-subgraph/src/datasource/*"],
     }
   },
   "include": ["src/**/*", "tools", "articles-subgraph/**/*", "user-subgraph/**/*"],

@@ -1,4 +1,4 @@
-import getArticlesById from "@articles-subgraph/data-access/getArticlesById";
+import getArticlesById from "@articles-subgraph/datasource/getArticlesById";
 
 /**
  * Resolver for fetching a single article by its ID.
