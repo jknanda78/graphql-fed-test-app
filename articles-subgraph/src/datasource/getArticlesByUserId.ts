@@ -1,5 +1,5 @@
 import { connection } from "@tools/connection";
-import { AccountType, ArticleTable, Message, User, UserWithArticles } from "@articles-subgraph/types";
+import { ArticleTable, Article, Message } from "@articles-subgraph/types";
 
 /**
  * Returns the articles table from the database connection.
@@ -12,16 +12,13 @@ const getArticlesTable = () => connection.table<ArticleTable>("article");
  * @param id - The ID of the article to fetch.
  * @returns A promise that resolves to the article object or undefined if not found.
  */
-const getArticlesByUserId = async (user: User): Promise<UserWithArticles|Message> => {
-    const articles = await getArticlesTable().select().where("userId", user.id);
+const getArticlesByUserId = async (id: string): Promise<Article[]|Message> => {
+    const articles = await getArticlesTable().select().where("userId", id);
 
     if (articles.length) {
-        return {
-            accountType: AccountType.AUTHOR,
-            articles: articles.map(a => ({id: a.articleId, title: a.title})),
-        };
+        return articles.map(a => ({id: a.articleId, title: a.title, userId: a.userId}));
     }
-    return {accountType: user.accountType, articles: []};
+    return [];
 };
 
 export default getArticlesByUserId;

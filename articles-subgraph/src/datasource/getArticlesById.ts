@@ -1,5 +1,6 @@
 import { connection } from "@tools/connection";
 import { ArticleTable, Article, Message } from "@articles-subgraph/types";
+import { GraphQLError } from "graphql";
 
 /**
  * Returns the articles table from the database connection.
@@ -12,14 +13,22 @@ const getArticlesTable = () => connection.table<ArticleTable>("article");
  * @param id - The ID of the article to fetch.
  * @returns A promise that resolves to the article object or undefined if not found.
  */
-const getArticleById = async (id: string): Promise<Article[]|Message> => {
-    const articles = await getArticlesTable().select().where("articleId", id);
+const getArticleById = async (id: string): Promise<Article|Message> => {
+    const article = await getArticlesTable().select().where("articleId", id).first();
 
-    if (articles.length) {
-        return articles.map(a => ({id: a.articleId, title: a.title}));
+    if (article) {
+        return {
+          id: article.articleId, 
+          title: article.title,
+          userId: article.userId,
+        };
     }
 
-    return {msg: "Article not found", error: true, code: "ARTICLE_NOT_FOUND"};
+    throw new GraphQLError("Article not found", {
+      extensions: {
+        code: 'ARTICLE_NOT_FOUND',
+      },
+    });
 };
 
 export default getArticleById;

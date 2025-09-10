@@ -1,10 +1,3 @@
-export enum AccountType {
-    ADMIN,
-    USER,
-    GUEST,
-    AUTHOR
-}
-
 export type ArticleTable = {
     userId: string;
     articleId: string;
@@ -20,6 +13,7 @@ export type Message = {
 export type Article = {
     id: string;
     title: string;
+    userId: string;
 }
 
 export type User = {
@@ -27,10 +21,8 @@ export type User = {
     email: string;
     name: string;
     createdAt: string;
-    accountType: AccountType;
 };
 
 export type UserWithArticles = {
     articles: Article[];
-    accountType: AccountType;
 };

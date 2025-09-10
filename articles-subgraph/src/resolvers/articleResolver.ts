@@ -15,7 +15,7 @@ const articleResolver = async (
     context: any,
     info: any
   ): Promise<any> => {
-    return getArticlesById(args.id);
+    return getArticlesById(args.articleId);
   };
   
   export default articleResolver;

@@ -26,7 +26,7 @@
     "publish:subgraph-user": "npm run merge:subgraph-user && rover subgraph publish WWW-Articles@current --schema ./user-subgraph/src/schema.graphql --name user-subgraph --routing-url http://localhost:4001",
     "publish:subgraph-articles": "npm run merge:subgraph-articles && rover subgraph publish WWW-Articles@current --schema ./articles-subgraph/src/schema.graphql --name articles-subgraph --routing-url http://localhost:4002",
     "publish:all": "npm run publish:subgraph-user && npm run publish:subgraph-articles",
-    "start:router": "APOLLO_KEY=service:WWW-Articles:IUEf52tSFBMyHSkWGg9akA APOLLO_GRAPH_REF=WWW-Articles@current ./router/router --config ./router/config.yaml",
+    "start:router": "APOLLO_KEY=service:WWW-Articles:IUEf52tSFBMyHSkWGg9akA APOLLO_GRAPH_REF=WWW-Articles@current ./router/router --config ./router/router.yaml",
     "start:explorer": "concurrently --kill-others --names 'router, subgraph-user, subgraph-articles' --prefix-colors 'blue,magenta,green' --prefix '[:name]' 'npm run start:router' 'npm run start:subgraph-user' 'npm run start:subgraph-articles'",
     "predev": "npm run create-db",
     "start:subgraph-user": "nodemon --delay 2.5 --exec PORT=4001 ts-node -r tsconfig-paths/register ./user-subgraph/src/server.ts",

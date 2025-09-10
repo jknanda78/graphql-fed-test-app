@@ -16,7 +16,7 @@ const getArticles = async (): Promise<Article[]|Message> => {
     const articles = await getArticlesTable().select();
 
     if (articles.length) {
-        return articles.map(a => ({id: a.articleId, title: a.title}));
+        return articles.map(a => ({id: a.articleId, title: a.title, userId: a.userId}));
     }
 
     return {msg: "Articles not found", error: true, code: "ARTICLES_NOT_FOUND"};

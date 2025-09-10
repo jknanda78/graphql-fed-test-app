@@ -1,6 +1,7 @@
 type Article {
   id: ID!
   title: String!
+  user: User!
 }
 
 input ArticleInput {

@@ -1,18 +1,10 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@shareable"])
-
-enum AccountType {
-  ADMIN
-  USER
-  GUEST
-  AUTHOR
-}
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key"])
 
 type User @key(fields: "id") {
   id: ID!
   name: String!
   email: String!
   createdAt: String!
-  accountType: AccountType! @shareable
 }
 
 input UserInput {

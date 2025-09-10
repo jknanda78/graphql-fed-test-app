@@ -1,8 +1,8 @@
 import articlesResolver from "@articles-subgraph/resolvers/articlesResolver";
 import createArticleResolver from "@articles-subgraph/resolvers/createArticleResolver";
 import articleResolver from "@articles-subgraph/resolvers/articleResolver";
-import getArticlesByUserId from "@articles-subgraph/datasource/getArticlesByUserId";
-import { User } from "@articles-subgraph/types";
+import userArticlesResolver from "@articles-subgraph/resolvers/userArticlesResolver";
+import getUserById from "@user-subgraph/datasource/getUserById";
 
 const resolvers: any = {
   Query: {
@@ -10,8 +10,11 @@ const resolvers: any = {
     article: articleResolver,
   },
   User: {
-    __resolveReference: (user: User) => {
-      return getArticlesByUserId(user);
+    articles: userArticlesResolver,
+  },
+  Article: {
+    user: (article: any, context: any, info: any) => {
+      return getUserById(article.userId);
     },
   },
   Mutation: {
