@@ -3,4 +3,5 @@ extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@
 extend type User @key(fields: "id") {
   id: ID! @external
   articles: [Article]!
+  fullName: String! @requires(fields: "firstName lastName")
 }

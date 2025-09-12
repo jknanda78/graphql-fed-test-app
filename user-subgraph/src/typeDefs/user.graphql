@@ -2,13 +2,15 @@ extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@
 
 type User @key(fields: "id") {
   id: ID!
-  name: String!
+  firstName: String!
+  lastName: String!
   email: String!
   createdAt: String!
 }
 
 input UserInput {
-  name: String!
+  firstName: String!
+  lastName: String!
   email: String!
 }
 

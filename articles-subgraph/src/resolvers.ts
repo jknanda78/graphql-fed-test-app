@@ -11,6 +11,10 @@ const resolvers: any = {
   },
   User: {
     articles: userArticlesResolver,
+    fullName: (user: any, context: any, info: any) => {
+      console.log(`${user.firstName} ${user.lastName}`);
+      return `${user.firstName} ${user.lastName}`;
+    },
   },
   Article: {
     user: (article: any, context: any, info: any) => {
