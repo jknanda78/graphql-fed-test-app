@@ -17,7 +17,7 @@ const getUserById = async (id: string): Promise<User> => {
   const user = await getUsersTable().where("userId", id).first();
 
   if (user) {
-    return {id, email: user.email, name: user.name, createdAt: user.createdAt };
+    return {id, email: user.email, createdAt: user.createdAt, name: {firstName: user.firstName, lastName: user.lastName} };
   }
 
   throw new GraphQLError("User not found", {

@@ -8,7 +8,6 @@ const resolvers = {
   },
   User: {
     __resolveReference: async(user: any, context: any, info: any) => {
-      console.log("__resolveReference", user);
       return getUserById(user.id);
     },
   },

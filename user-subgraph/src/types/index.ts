@@ -7,13 +7,24 @@ export type Message = {
 export type User = {
     id: string;
     email: string;
-    name: string;
+    name: Name;
     createdAt: string;
+};
+
+export type Name = {
+    firstName: string;
+    lastName: string;
 };
 
 export type UserInput = {
     email: string;
-    name: string;
+    name: Name;
 };
 
-export type UserTable = Omit<User, "id"> & {userId: string};
+export type UserTable = {
+    userId: string;
+    email: string;
+    createdAt: string;
+    firstName: string;
+    lastName: string;
+}
