@@ -17,6 +17,7 @@ const connectDB = async () => {
     table.text("lastName").notNullable();
     table.text("email").notNullable().unique();
     table.text("createdAt").notNullable();
+    table.specificType("sessions", "object[]");
   });
 
   // Create the article table
@@ -35,6 +36,7 @@ const connectDB = async () => {
       lastName: "Doe",
       email: "john.doe@email.com",
       createdAt: "2025-08-29T09:00:00.000Z",
+      sessions: JSON.stringify([{ id: "364e9093-3119-48e6-826d-eca5ee72c3ec"}, { id: "dcd8c0af-d2b8-4487-ba53-9b4d158f4b93"}, { id: "4208ebb1-e415-4447-96f5-8eae510ccaeb "}]),
     },
     {
       userId: "e8bc0cb2-a22d-49dc-857e-fc824ed3710e",
@@ -42,6 +44,7 @@ const connectDB = async () => {
       lastName: "Armstrong",
       email: "brian.armstrong@email.com",
       createdAt: "2025-08-30T10:00:00.000Z",
+      sessions: JSON.stringify([{id: "894bfb35-3d9e-4053-8e41-174299a77dfd"}]),
     },
   ]);
 

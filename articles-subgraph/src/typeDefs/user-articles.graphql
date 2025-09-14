@@ -1,13 +1,19 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@external", "@requires"])
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@external", "@requires"])
 
 extend type User @key(fields: "id") {
   id: ID! @external
   name: Name! @external
+  sessions: [Session]! @external
   articles: [Article]!
-  fullName: String! @requires(fields: "name { firstName lastName }")
+  fullName: String! @requires(fields: "name { firstName lastName } sessions { id }")
 }
 
 extend type Name {
   firstName: String! @external
   lastName: String! @external
+}
+
+extend type Session {
+  id: ID! @external
 }

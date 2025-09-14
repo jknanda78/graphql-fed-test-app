@@ -5,11 +5,16 @@ type User @key(fields: "id") {
   name: Name!
   email: String!
   createdAt: String!
+  sessions: [Session]!
 }
 
 type Name {
   firstName: String!
   lastName: String!
+}
+
+type Session {
+  id: ID!
 }
 
 input UserInput {

@@ -4,11 +4,16 @@ export type Message = {
     code: string;
 };
 
+export type Session = {
+    id: string;
+};
+
 export type User = {
     id: string;
     email: string;
     name: Name;
     createdAt: string;
+    sessions: Session[];
 };
 
 export type Name = {
@@ -27,4 +32,5 @@ export type UserTable = {
     createdAt: string;
     firstName: string;
     lastName: string;
+    sessions: string;
 }
