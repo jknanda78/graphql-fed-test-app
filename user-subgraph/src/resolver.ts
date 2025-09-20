@@ -8,6 +8,7 @@ const resolvers = {
   },
   User: {
     __resolveReference: async(user: any, context: any, info: any) => {
+      console.log("user-subgraph::__resolveReference resolver:::", user);
       return getUserById(user.id);
     },
   },

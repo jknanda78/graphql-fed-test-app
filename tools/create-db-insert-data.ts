@@ -62,6 +62,18 @@ const connectDB = async () => {
       title: "Article 2",
       createdAt: "2025-08-30T10:00:00.000Z",
     },
+    {
+      articleId: "a4cecefe-8d55-4dec-a056-e8a0209ce8ee",
+      userId: "902bb37b-a002-4f4f-b3f2-97bda6db3de8",
+      title: "Article 3",
+      createdAt: "2025-09-01T09:00:00.000Z",
+    },
+    {
+      articleId: "47978892-2036-4415-8005-e76b910c800e",
+      userId: "902bb37b-a002-4f4f-b3f2-97bda6db3de8",
+      title: "Article 4",
+      createdAt: "2025-09-02T09:00:00.000Z",
+    },
   ]);
 
   // Exit the process

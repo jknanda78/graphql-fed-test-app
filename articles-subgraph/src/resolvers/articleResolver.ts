@@ -15,6 +15,7 @@ const articleResolver = async (
     context: any,
     info: any
   ): Promise<any> => {
+    console.log("articles-subgraph::articleResolver:::", args);
     return getArticlesById(args.articleId);
   };
   

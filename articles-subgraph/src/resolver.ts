@@ -11,14 +11,15 @@ const resolvers: any = {
   },
   User: {
     articles: userArticlesResolver,
-    fullName: (user: any, args: any, context: any, info: any) => {
-      console.log("fullName resolver:::", user);
-      return `${user.name.firstName} ${user.name.lastName}`;
+    fullName: (parent: any, args: any, context: any, info: any) => {
+      console.log("articles-subgraph::User:fullName::resolver:::", parent);
+      return `${parent.name.firstName} ${parent.name.lastName}`;
     },
   },
   Article: {
-    user: (article: any, args: any, context: any, info: any) => {
-      return getUserById(article.userId);
+    user: (parent: any, args: any, context: any, info: any) => {
+      console.log("articles-subgraph::Article:user::resolver:::", parent);
+      return getUserById(parent.userId);
     },
   },
   Mutation: {

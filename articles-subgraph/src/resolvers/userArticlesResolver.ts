@@ -15,6 +15,7 @@ const userArticlesResolver = async (
     context: any,
     info: any
   ): Promise<any> => {
+    console.log("articles-subgraph::userArticlesResolver:::", parent);
     return getArticlesByUserId(parent.id);
   };
   

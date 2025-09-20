@@ -1,5 +1,5 @@
 import { connection } from '@tools/connection';
-import { Session, User, UserTable } from '@user-subgraph/types';
+import { User, UserTable } from '@user-subgraph/types';
 import { GraphQLError } from 'graphql';
 
 /**
@@ -22,7 +22,6 @@ const getUserById = async (id: string): Promise<User> => {
       email: user.email,
       createdAt: user.createdAt,
       name: { firstName: user.firstName, lastName: user.lastName },
-      sessions: JSON.parse(user.sessions as string) as Session[],
     };
   }
 

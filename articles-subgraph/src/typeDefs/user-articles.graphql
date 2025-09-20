@@ -4,16 +4,11 @@ extend schema
 extend type User @key(fields: "id") {
   id: ID! @external
   name: Name! @external
-  sessions: [Session]! @external
   articles: [Article]!
-  fullName: String! @requires(fields: "name { firstName lastName } sessions { id }")
+  fullName: String! @requires(fields: "name { firstName lastName }")
 }
 
 extend type Name {
   firstName: String! @external
   lastName: String! @external
-}
-
-extend type Session {
-  id: ID! @external
 }

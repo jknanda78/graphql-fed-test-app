@@ -15,6 +15,7 @@ const userResolver = async (
   context: any,
   info: any
 ): Promise<any> => {
+  console.log("user-subgraph:: userResolver:::", args);
   return getUserById(args.id);
 };
 

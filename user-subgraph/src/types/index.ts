@@ -13,7 +13,6 @@ export type User = {
     email: string;
     name: Name;
     createdAt: string;
-    sessions: Session[];
 };
 
 export type Name = {
