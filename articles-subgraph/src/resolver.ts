@@ -3,6 +3,7 @@ import createArticleResolver from "@articles-subgraph/resolvers/createArticleRes
 import articleResolver from "@articles-subgraph/resolvers/articleResolver";
 import userArticlesResolver from "@articles-subgraph/resolvers/userArticlesResolver";
 import getUserById from "@user-subgraph/datasource/getUserById";
+import chalk from "chalk";
 
 const resolvers: any = {
   Query: {
@@ -12,13 +13,13 @@ const resolvers: any = {
   User: {
     articles: userArticlesResolver,
     fullName: (parent: any, args: any, context: any, info: any) => {
-      console.log("articles-subgraph::User:fullName::resolver:::", parent);
+      console.log(chalk.bgBlue("articles-subgraph::User:fullName::resolver:::"), parent);
       return `${parent.name.firstName} ${parent.name.lastName}`;
     },
   },
   Article: {
     user: (parent: any, args: any, context: any, info: any) => {
-      console.log("articles-subgraph::Article:user::resolver:::", parent);
+      console.log(chalk.bgYellow("articles-subgraph::Article:user::resolver:::"), parent);
       return getUserById(parent.userId);
     },
   },
