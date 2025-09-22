@@ -11,7 +11,7 @@ const userArticlesTypeDefs = gql(readFileSync('./articles-subgraph/src/typeDefs/
 
 async function startApolloServer() {
   const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs: [articlesTypeDefs, userArticlesTypeDefs], resolvers }),
+    schema: buildSubgraphSchema({ typeDefs: [userArticlesTypeDefs, articlesTypeDefs], resolvers }),
   });
 
   const port = 4002;

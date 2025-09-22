@@ -1,4 +1,5 @@
 import getArticlesById from "@articles-subgraph/datasource/getArticlesById";
+import chalk from "chalk";
 
 /**
  * Resolver for fetching a single article by its ID.
@@ -15,7 +16,7 @@ const articleResolver = async (
     context: any,
     info: any
   ): Promise<any> => {
-    console.log("articles-subgraph::articleResolver:::", args);
+    console.log(chalk.bgGreen("articles-subgraph::articleResolver:::"), args.articleId);
     return getArticlesById(args.articleId);
   };
   
