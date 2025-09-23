@@ -1,6 +1,7 @@
 import { connection } from '@tools/connection';
 import { User, UserTable } from '@user-subgraph/types';
 import { GraphQLError } from 'graphql';
+import chalk from 'chalk';
 
 /**
  * Returns the user table from the database connection.
@@ -17,6 +18,7 @@ const getUserById = async (id: string): Promise<User> => {
   const user = await getUsersTable().where('userId', id).first();
 
   if (user) {
+    console.log(chalk.bgGrey("user-subgraph::getUserById resolver:::"), user);
     return {
       id,
       email: user.email,

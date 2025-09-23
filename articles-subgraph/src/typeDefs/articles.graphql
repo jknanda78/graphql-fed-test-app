@@ -1,7 +1,7 @@
 type Article {
   id: ID!
   title: String!
-  user: User! @provides(fields: "id email")
+  user: User! @provides(fields: "email")
 }
 
 input ArticleInput {
@@ -16,4 +16,3 @@ type Query {
 type Mutation {
   createArticle(input: ArticleInput!): Article
 }
-
