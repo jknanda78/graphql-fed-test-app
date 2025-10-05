@@ -8,14 +8,14 @@ import chalk from "chalk";
  * @param {any} args - The arguments passed to the resolver.
  * @param {any} context - The context shared across all resolvers.
  * @param {any} info - Information about the execution state of the query.
- * @returns {Promise<{}>} - The article data.
+ * @returns {any} - The article data.
  */
-const articlesResolver = async (
+const articlesResolver = (
     parent: any,
     args: any,
     context: any,
     info: any
-  ): Promise<any> => {
+  ): any => {
     console.log(chalk.bgRed("articles-subgraph::articlesResolver:::"));
     return getArticles();
   };

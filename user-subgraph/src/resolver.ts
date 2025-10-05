@@ -8,9 +8,9 @@ const resolvers = {
     user: userResolver,
   },
   User: {
-    __resolveReference: async(user: any, context: any, info: any) => {
-      console.log(chalk.bgGrey("user-subgraph::__resolveReference resolver:::"), user);
-      return getUserById(user.id);
+    __resolveReference: async(args: any, context: any, info: any) => {
+      console.log(chalk.bgGrey("user-subgraph::__resolveReference resolver:::"), args);
+      return await getUserById(args.id);
     },
   },
   Mutation: {
