@@ -14,14 +14,14 @@ const getUsersTable = () => connection.table<UserTable>('user');
  * @param id - The ID of the user to fetch.
  * @returns A promise that resolves to the user object or undefined if not found.
  */
-const getUserById = async (id: string): Promise<User> => {
+const getUserById = async (id: string): Promise<any> => {
   const user = await getUsersTable().where('userId', id).first();
 
   if (user) {
-    console.log(chalk.bgGrey("user-subgraph::getUserById resolver:::"), user);
+    console.log(chalk.bgGrey('user-subgraph::getUserById resolver:::'), user);
     return {
       id,
-      email: user.email,
+      email: user.emailId,
       createdAt: user.createdAt,
       name: { firstName: user.firstName, lastName: user.lastName },
     };

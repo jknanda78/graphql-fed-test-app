@@ -1,7 +1,7 @@
 type Article {
   id: ID!
   title: String!
-  user: User! @provides(fields: "email name createdAt")
+  user: User! @provides(fields: "email")
 }
 
 input ArticleInput {

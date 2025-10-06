@@ -33,7 +33,6 @@ type Message {
   code: String!
 }
 
-
 type Mutation {
   createUser(input: UserInput!): Message
 }
