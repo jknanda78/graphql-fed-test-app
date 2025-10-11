@@ -24,6 +24,7 @@ const getUserById = async (id: string): Promise<any> => {
       email: user.emailId,
       createdAt: user.createdAt,
       name: { firstName: user.firstName, lastName: user.lastName },
+      sessions: JSON.parse(user.sessions),
     };
   }
 

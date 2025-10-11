@@ -5,7 +5,7 @@ type User @key(fields: "id") {
   name: Name!
   email: String!
   createdAt: String!
-  sessions: [Session]!
+  sessions: [Session!]!
 }
 
 type Name {
