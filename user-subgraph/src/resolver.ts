@@ -4,6 +4,14 @@ import userResolver from './resolvers/user';
 import chalk from 'chalk';
 
 const resolvers = {
+  UserGraphQLResponse: {
+    __resolveType: (obj: any) => {
+      if (obj.error) {
+        return 'Error';
+      }
+      return 'User';
+    },
+  },
   Query: {
     user: userResolver,
   },

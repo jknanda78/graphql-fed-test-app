@@ -8,11 +8,31 @@ input ArticleInput {
   title: String!
 }
 
+type ArticleById implements ArticleGraphQLResponse {
+  error: Error
+  data: Article
+}
+
+type Articles implements ArticleGraphQLResponse {
+  error: Error
+  data: [Article]!
+}
+
 type Query {
-  article(articleId: ID!): Article
-  articles: [Article]!
+  article(articleId: ID!): ArticleById
+  articles: Articles
+}
+
+type NewArticle {
+  status: String!
+  id: ID!
+}
+
+type CreateArticle implements ArticleGraphQLResponse {
+  error: Error
+  data: NewArticle
 }
 
 type Mutation {
-  createArticle(input: ArticleInput!): Article
+  createArticle(input: ArticleInput!): CreateArticle
 }

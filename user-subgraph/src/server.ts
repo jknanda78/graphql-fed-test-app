@@ -6,7 +6,7 @@ import resolvers from "@user-subgraph/resolver";
 import { readFileSync } from "fs";
 import gql from "graphql-tag";
 
-const typeDefs = gql(readFileSync('./user-subgraph/src/typeDefs/user.graphql', { encoding: 'utf-8' }));
+const typeDefs = gql(readFileSync('./user-subgraph/src/schema.graphql', { encoding: 'utf-8' }));
 
 async function startApolloServer() {
   const server = new ApolloServer({

@@ -82,6 +82,25 @@ Graphql federation application
   }
   ```
 
+  ```graphql
+  query Article($articleId: ID!) {
+    article(articleId: $articleId) {
+      data {
+        id
+        title
+        user {
+          email
+          id
+        }
+      }
+      error {
+        code
+        message
+      }
+    }
+  }
+  ```
+
   - Variables
 
   ```json

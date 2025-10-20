@@ -6,12 +6,11 @@ import resolvers from "@articles-subgraph/resolver";
 import { readFileSync } from "fs";
 import gql from "graphql-tag";
 
-const articlesTypeDefs = gql(readFileSync('./articles-subgraph/src/typeDefs/articles.graphql', { encoding: 'utf-8' }));
-const userArticlesTypeDefs = gql(readFileSync('./articles-subgraph/src/typeDefs/user-articles.graphql', { encoding: 'utf-8' }));
+const typeDefs = gql(readFileSync('./articles-subgraph/src/schema.graphql', { encoding: 'utf-8' }));
 
 async function startApolloServer() {
   const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs: [userArticlesTypeDefs, articlesTypeDefs], resolvers }),
+    schema: buildSubgraphSchema({ typeDefs, resolvers }),
   });
 
   const port = 4002;

@@ -17,7 +17,21 @@ const articleResolver = async (
     info: any
   ): Promise<any> => {
     console.log(chalk.bgGreen("articles-subgraph::articleResolver:::"), args.articleId);
-    return await getArticlesById(args.articleId);
+    try {
+      const article = await getArticlesById(args.articleId);
+      return {
+        error: null,
+        data: article,
+      };
+    } catch (error: any) {
+      return {
+        error: {
+          message: error?.message,
+          code: error?.extensions?.code,
+        },
+        data: null,
+      };
+    }
   };
   
   export default articleResolver;

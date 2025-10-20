@@ -1,9 +1,18 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key"])
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.7", import: ["@key", "@shareable"])
+
+interface UserGraphQLResponse {
+  error: Error
+}
+
+type Error {
+  message: String @shareable
+  code: String @shareable
+}
 
 type User @key(fields: "id") {
   id: ID!
   name: Name!
-  email: String!
+  email: String! @shareable
   createdAt: String!
   sessions: [Session!]!
 }
@@ -23,16 +32,20 @@ input UserInput {
   email: String!
 }
 
-type Query {
-  user(id: ID!): User
+type GetUserByIdResponse implements UserGraphQLResponse {
+  error: Error
+  data: User
 }
 
-type Message {
-  msg: String!
-  error: Boolean!
-  code: String!
+type Query {
+  user(id: ID!): GetUserByIdResponse
+}
+
+type CreateUserResponse implements UserGraphQLResponse {
+  error: Error
+  data: User
 }
 
 type Mutation {
-  createUser(input: UserInput!): Message
+  createUser(input: UserInput!): CreateUserResponse
 }

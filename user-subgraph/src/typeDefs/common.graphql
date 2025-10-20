@@ -1,0 +1,8 @@
+interface UserGraphQLResponse {
+  error: Error
+}
+
+type Error {
+  message: String @shareable
+  code: String @shareable
+}

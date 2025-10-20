@@ -16,7 +16,21 @@ const userResolver = async (
   info: any
 ): Promise<any> => {
   console.log("user-subgraph:: userResolver:::", args);
-  return getUserById(args.id);
+  try {
+    const user = await getUserById(args.id);
+    return {
+      error: null,
+      data: user,
+    };
+  } catch (error: any) {
+    return {
+      error: {
+        message: error.message,
+        code: error.extensions?.code,
+      },
+      data: null,
+    };
+  }
 };
 
 export default userResolver;

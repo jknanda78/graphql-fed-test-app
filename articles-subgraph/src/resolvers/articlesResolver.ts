@@ -10,14 +10,18 @@ import chalk from "chalk";
  * @param {any} info - Information about the execution state of the query.
  * @returns {any} - The article data.
  */
-const articlesResolver = (
+const articlesResolver = async (
     parent: any,
     args: any,
     context: any,
     info: any
-  ): any => {
+  ): Promise<any> => {
     console.log(chalk.bgRed("articles-subgraph::articlesResolver:::"));
-    return getArticles();
+    const articles = await getArticles();
+    return {
+      error: null,
+      data: articles,
+    };
   };
   
   export default articlesResolver;
