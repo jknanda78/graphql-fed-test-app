@@ -1,26 +1,47 @@
-type Article {
+interface ArticleInterface {
+  id: ID!
+  title: String!
+}
+
+interface ResponseInterface {
+  error: Error
+}
+
+type Author implements ArticleInterface {
   id: ID!
   title: String!
   user: User! @provides(fields: "email")
+}
+
+type Review {
+  id: ID!
+  rating: Int!
+  comments: String!
+}
+
+type Reviews implements ArticleInterface {
+  id: ID!
+  title: String!
+  reviews: [Review!]!
 }
 
 input ArticleInput {
   title: String!
 }
 
-type ArticleById implements ArticleGraphQLResponse {
+type ArticleById implements ResponseInterface {
   error: Error
-  data: Article
+  data: ArticleInterface
 }
 
-type Articles implements ArticleGraphQLResponse {
+type Articles implements ResponseInterface {
   error: Error
-  data: [Article]!
+  data: [ArticleInterface]!
 }
 
 type Query {
-  article(articleId: ID!): ArticleById
-  articles: Articles
+  article(articleId: ID!): ArticleById!
+  articles: Articles!
 }
 
 type NewArticle {
@@ -28,7 +49,7 @@ type NewArticle {
   id: ID!
 }
 
-type CreateArticle implements ArticleGraphQLResponse {
+type CreateArticle {
   error: Error
   data: NewArticle
 }

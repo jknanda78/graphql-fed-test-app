@@ -1,5 +1,5 @@
 import { connection } from '@tools/connection';
-import { ArticleTable, Article, Message } from '@articles-subgraph/types';
+import { ArticleTable, Article, ReviewTable, Review, Message } from '@articles-subgraph/types';
 import { GraphQLError } from 'graphql';
 
 /**
@@ -7,6 +7,7 @@ import { GraphQLError } from 'graphql';
  * @returns The articles table.
  */
 const getArticlesTable = () => connection.table<ArticleTable>('article');
+const getReviewsTable = () => connection.table<ReviewTable>('review');
 
 /**
  * Fetches an article by its ID.
@@ -15,13 +16,21 @@ const getArticlesTable = () => connection.table<ArticleTable>('article');
  */
 const getArticleById = async (id: string): Promise<Article | Message> => {
   const article = await getArticlesTable().select().where('articleId', id).first();
-
+  console.log({article});
   if (article) {
+    const reviewsByArticleId = await getReviewsTable().select().where('articleId', id);
     return {
       id: article.articleId,
       title: article.title,
-      userId: article.userId,
-      emailId: article.emailId,
+      user: {
+        id: article.userId,
+        email: article.emailId,
+      },
+      reviews: reviewsByArticleId?.map(r => ({
+        id: r.reviewId,
+        rating: r.rating,
+        comments: r.comments,
+      })) || [],
     };
   }
 

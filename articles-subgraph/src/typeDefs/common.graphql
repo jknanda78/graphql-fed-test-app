@@ -1,7 +1,3 @@
-interface ArticleGraphQLResponse {
-  error: Error
-}
-
 type Error {
   message: String @shareable
   code: String @shareable

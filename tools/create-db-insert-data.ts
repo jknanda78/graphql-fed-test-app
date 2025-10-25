@@ -9,6 +9,7 @@ const connectDB = async () => {
   // Drop existing tables if they exist
   await schema.dropTableIfExists('article');
   await schema.dropTableIfExists('user');
+  await schema.dropTableIfExists('review');
 
   // Create the user table
   await schema.createTable('user', table => {
@@ -27,6 +28,14 @@ const connectDB = async () => {
     table.text('emailId').notNullable().references('emailId').inTable('user'); // Denormalized field for @provides directive
     table.text('title').notNullable();
     table.text('createdAt').notNullable();
+  });
+
+  // Create the review table
+  await schema.createTable('review', table => {
+    table.text('reviewId').notNullable().primary();
+    table.text('articleId').notNullable().references('articleId').inTable('article');
+    table.text('comments').notNullable();
+    table.text('rating').notNullable();
   });
 
   // Insert sample data into the user table
@@ -82,6 +91,34 @@ const connectDB = async () => {
       emailId: 'john.doe@email.com',
       title: 'Article 4',
       createdAt: '2025-09-02T09:00:00.000Z',
+    },
+  ]);
+
+  // Insert sample data into the review table
+  await connection.table('review').insert([
+    {
+      reviewId: 'a7a199af-9014-43b7-ad80-6a2e9ee6124b',
+      articleId: 'e8bc0cb2-a22d-49dc-857e-fc824ed3710e',
+      rating: 5,
+      comments: 'Great article!',
+    },
+    {
+      reviewId: '066aef2a-ca82-4c2e-a2d0-40af4ac45ebc',
+      articleId: 'e8bc0cb2-a22d-49dc-857e-fc824ed3710e',
+      rating: 4,
+      comments: 'Good article!',
+    },
+    {
+      reviewId: 'b3258ec5-7ff7-4823-8ef6-a08d7b361140',
+      articleId: 'e8bc0cb2-a22d-49dc-857e-fc824ed3710e',
+      rating: 3,
+      comments: 'Average article!',
+    },
+    {
+      reviewId: '11b12e0e-4097-420d-b6c1-da41b97d4943',
+      articleId: 'a881c407-923a-48ff-8c69-481893df39b4',
+      rating: 2,
+      comments: 'Bad article!',
     },
   ]);
 

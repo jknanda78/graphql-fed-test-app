@@ -24,6 +24,7 @@ const articleResolver = async (
         data: article,
       };
     } catch (error: any) {
+      console.log({error});
       return {
         error: {
           message: error?.message,

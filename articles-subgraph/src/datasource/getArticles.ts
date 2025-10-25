@@ -19,8 +19,11 @@ const getArticles = async (): Promise<Article[] | Message> => {
     return articles.map(a => ({
       id: a.articleId,
       title: a.title,
-      userId: a.userId,
-      emailId: a.emailId,
+      user: {
+        id: a.userId,
+        email: a.emailId,
+      },
+      reviews: [],
     }));
   }
 
