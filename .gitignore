@@ -151,3 +151,4 @@ yarn.lock
 
 # Apollo router
 **/router/router
+.github/instructions/wmt-copilot.instructions.md
