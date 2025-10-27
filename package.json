@@ -50,6 +50,7 @@
   "devDependencies": {
     "@graphql-tools/load-files": "^7.0.1",
     "@graphql-tools/merge": "^9.1.1",
+    "@types/cors": "^2.8.19",
     "@types/node": "^24.3.0",
     "@types/prettier": "^2.7.3",
     "@types/yargs": "^17.0.33",

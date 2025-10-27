@@ -1,9 +1,9 @@
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-// import { startStandaloneServer } from '@apollo/server/standalone';
 import { buildSubgraphSchema } from '@apollo/subgraph';
 import resolvers from '@user-subgraph/resolver';
 import http from 'http';
+import cors from 'cors';
 import express from 'express';
 import { expressMiddleware } from '@as-integrations/express5';
 
@@ -14,10 +14,6 @@ import { express as voyagerMiddleware } from 'graphql-voyager/middleware';
 const typeDefs = gql(readFileSync('./user-subgraph/src/schema.graphql', { encoding: 'utf-8' }));
 
 async function startApolloServer() {
-  // const server = new ApolloServer({
-  //   schema: buildSubgraphSchema({ typeDefs, resolvers }),
-  // });
-
   const port = 4001;
   const subgraphName = 'user';
 
@@ -38,23 +34,13 @@ async function startApolloServer() {
   app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
 
   try {
-    // const { url } = await startStandaloneServer(server, {
-    //   context: async () => {
-    //     return {
-    //       dataSources: {},
-    //     };
-    //   },
-    //   listen: { port },
-    // });
-
-    // Ensure we wait for our server to start
     await server.start();
 
     // Set up our Express middleware to handle CORS, body parsing,
     // and our expressMiddleware function.
     app.use(
       '/graphql',
-      // cors(),
+      cors(),
       // 50mb is the limit that `startStandaloneServer` uses, but you may configure this to suit your needs
       express.json({ limit: '50mb' }),
       // expressMiddleware accepts the same arguments:
